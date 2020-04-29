@@ -17,8 +17,10 @@
     <string name="rewards">Rewards</string>
     <string name="home">Home</string>
     <string name="schedule">Schedule</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="welcome_to">Welcome to...</string>
+    <string name="welcome_to">Welcome to…</string>
+    <string name="connect">Connect to Device</string>
+    <string name="monitor">Start Monitoring</string>
+    <string name="welcome_instruction">Please connect your bluetooth device</string>
+    <string name="err_message_no_bt">Your device is not compatible with this app</string>
 </resources>

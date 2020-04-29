@@ -17,12 +17,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/nav_graph" />
+        app:navGraph="@navigation/nav_graph"
+        tools:ignore="FragmentTagUsage" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible"
+        app:layout_anchorGravity="center"
         tools:visibility="visible">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -30,9 +32,9 @@
             android:layout_width="410dp"
             android:layout_height="wrap_content"
             app:itemBackground="@color/design_default_color_primary"
-            app:itemIconTint="@android:color/white"
-            app:itemTextColor="@color/main_color"
-            app:labelVisibilityMode="labeled"
+            app:itemIconTint="@color/main_color"
+            app:itemTextColor="@color/design_default_color_background"
+            app:labelVisibilityMode="selected"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

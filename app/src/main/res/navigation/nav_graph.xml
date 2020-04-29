@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/home"
         android:name="jolt.pack.Home"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        android:label="activity_home"
+        tools:layout="@layout/activity_home">
         <action
             android:id="@+id/action_home_to_settings"
             app:destination="@id/settings" />
