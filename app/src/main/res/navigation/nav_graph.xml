@@ -9,15 +9,56 @@
         android:id="@+id/FirstFragment"
         android:name="jolt.pack.FirstFragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        tools:layout="@layout/fragment_home">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_FirstFragment_to_calendar"
+            app:destination="@id/calendar" />
+        <action
+            android:id="@+id/action_FirstFragment_to_schedule"
+            app:destination="@id/schedule" />
+        <action
+            android:id="@+id/action_FirstFragment_to_rewards"
+            app:destination="@id/rewards" />
+        <action
+            android:id="@+id/action_FirstFragment_to_settings"
+            app:destination="@id/settings" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/rewards"
+        android:name="jolt.pack.rewards"
+        android:label="fragment_rewards"
+        tools:layout="@layout/fragment_rewards" >
+        <action
+            android:id="@+id/action_rewards_to_FirstFragment3"
+            app:destination="@id/FirstFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="jolt.pack.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second"/>
+        android:id="@+id/calendar"
+        android:name="jolt.pack.calendar"
+        android:label="fragment_calendar"
+        tools:layout="@layout/fragment_calendar" >
+        <action
+            android:id="@+id/action_calendar_to_FirstFragment3"
+            app:destination="@id/FirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/schedule"
+        android:name="jolt.pack.schedule"
+        android:label="fragment_schedule"
+        tools:layout="@layout/fragment_schedule" >
+        <action
+            android:id="@+id/action_schedule_to_FirstFragment3"
+            app:destination="@id/FirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settings"
+        android:name="jolt.pack.settings"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settings_to_FirstFragment3"
+            app:destination="@id/FirstFragment" />
+    </fragment>
 </navigation>
