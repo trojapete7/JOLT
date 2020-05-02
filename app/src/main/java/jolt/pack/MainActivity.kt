@@ -1,23 +1,51 @@
 package jolt.pack
 
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import androidx.navigation.NavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+
+    private var currentNavController: LiveData<NavController>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //setupNavigation()
-
-        val navController = findNavController (R.id.nav_host_fragment)
-        val bottomNav = findViewById<BottomNavigationView>(R.id.botNav)
-        bottomNav?.setupWithNavController(navController)
+        if (savedInstanceState == null) {
+            setupBottomNavigationBar()
+        } // Else, need to wait for onRestoreInstanceState
     }
 
-   // private fun setupNavigation(){}
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        setupBottomNavigationBar()
+    }
 
+    private fun setupBottomNavigationBar() {
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
+
+        val navGraphIds = listOf(R.navigation.calendar, R.navigation.rewards, R.navigation.home, R.navigation.schedule, R.navigation.settings)
+
+        // Setup the bottom navigation view with a list of navigation graphs
+        val controller = bottomNavigationView.setupWithNavController(
+            navGraphIds = navGraphIds,
+            fragmentManager = supportFragmentManager,
+            containerId = R.id.nav_host_container,
+            intent = intent
+        )
+
+        // Whenever the selected controller changes, setup the action bar.
+        controller.observe(this, Observer { navController ->
+            setupActionBarWithNavController(navController)
+        })
+        currentNavController = controller
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return currentNavController?.value?.navigateUp() ?: false
+    }
 }

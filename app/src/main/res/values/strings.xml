@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">jolt</string>
+    <string name="app_name">JÖLT</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -23,4 +23,9 @@
     <string name="monitor">Start Monitoring</string>
     <string name="welcome_instruction">Please connect your bluetooth device</string>
     <string name="err_message_no_bt">Your device is not compatible with this app</string>
+    <string name="colon_separator">:</string>
+    <string name="secondsEdit_hint">SS</string>
+    <string name="minutesEdit_hint">MM</string>
+    <string name="hoursEdit_hint">H</string>
+    <string name="timer_done">Timer is done!</string>
 </resources>
