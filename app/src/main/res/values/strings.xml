@@ -27,4 +27,15 @@
     <string name="hoursEdit_hint">HH</string>
     <string name="timer_done">Timer is done!</string>
     <string name="cancel_monitor">Cancel Monitoring</string>
+    <string name="pick_a_time">Pick a time</string>
+    <string name="set_a_time">Set a Time</string>
+    <string name="set_time">Set Time</string>
+    <string name="click_here">Click Here</string>
+    <string name="time_tester">Time Tester</string>
+    <string name="schedule_a_job" />
+    <string name="set_alarm" />
+    <string name="start_alarm">Start_alarm</string>
+    <string name="stop_alarm">Stop alarm</string>
+    <string name="did_you_set_the_alarm">did you set the alarm?</string>
+    <string name="stop_time">Stop</string>
 </resources>

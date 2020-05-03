@@ -120,7 +120,7 @@ class Home : Fragment() {
         separatorMinutesToSeconds.visibility = View.VISIBLE
         bt_connection_butt.visibility = View.VISIBLE
         start_monitor_butt.visibility = View.VISIBLE
-        (activity as MainActivity).SetNavigationVisibilty(true)
+        (activity as MainActivity).setNavigationVisibility(true)
 
         cancel_monitor_butt.visibility = View.INVISIBLE
     }
@@ -131,7 +131,7 @@ class Home : Fragment() {
         separatorMinutesToSeconds.visibility = View.INVISIBLE
         bt_connection_butt.visibility = View.INVISIBLE
         start_monitor_butt.visibility = View.INVISIBLE
-        (activity as MainActivity).SetNavigationVisibilty(false)
+        (activity as MainActivity).setNavigationVisibility(false)
         cancel_monitor_butt.visibility = View.VISIBLE
     }
 

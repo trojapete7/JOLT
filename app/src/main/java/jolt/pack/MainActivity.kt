@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_schedule.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,11 +25,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun SetNavigationVisibilty(b: Boolean){
+    fun setNavigationVisibility(b: Boolean){
         if(b){
             bottom_nav.visibility = View.VISIBLE
         }
-
         else {
             bottom_nav.visibility = View.GONE
         }

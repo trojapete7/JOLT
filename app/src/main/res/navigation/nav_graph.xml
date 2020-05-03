@@ -11,17 +11,17 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_home_to_rewards2"
+            android:id="@+id/action_home_to_rewards"
             app:destination="@id/rewards" />
         <action
-            android:id="@+id/action_home_to_settings2"
+            android:id="@+id/action_home_to_settings"
             app:destination="@id/settings" />
         <action
-            android:id="@+id/action_home_to_schedule2"
-            app:destination="@id/schedule" />
-        <action
-            android:id="@+id/action_home_to_calendar2"
+            android:id="@+id/action_home_to_calendar"
             app:destination="@id/calendar" />
+        <action
+            android:id="@+id/action_home_to_schedule"
+            app:destination="@id/schedule" />
     </fragment>
     <fragment
         android:id="@+id/calendar"
@@ -34,13 +34,23 @@
         android:label="fragment_rewards"
         tools:layout="@layout/fragment_rewards" />
     <fragment
-        android:id="@+id/schedule"
-        android:name="jolt.pack.Schedule"
-        android:label="fragment_schedule"
-        tools:layout="@layout/fragment_schedule" />
-    <fragment
         android:id="@+id/settings"
         android:name="jolt.pack.Settings"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/schedule"
+        android:name="jolt.pack.Schedule"
+        android:label="fragment_schedule"
+        tools:layout="@layout/fragment_schedule" >
+        <action
+            android:id="@+id/action_schedule_to_addSchedule"
+            app:destination="@id/addSchedule"
+            app:popUpTo="@id/schedule" />
+    </fragment>
+    <fragment
+        android:id="@+id/addSchedule"
+        android:name="jolt.pack.AddSchedule"
+        android:label="add_schedule" />
+
 </navigation>
