@@ -11,6 +11,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import kotlinx.android.synthetic.main.fragment_home.*
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 
 
 const val REQUEST_ENABLE_BT = 1
@@ -19,6 +22,11 @@ private const val SCAN_PERIOD: Long = 10000
 
 class Home : Fragment() {
 
+    var durationInMillis  = 0L
+    private fun setDuration (Long: Long):Long {
+        durationInMillis = Long
+        return Long
+}
     override fun onCreateView (inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_home, container, false)
 
@@ -35,8 +43,8 @@ class Home : Fragment() {
 
             hideUi()
             errMess.visibility = View.VISIBLE
-
             val beginVal: Long = ((numMinutes*60*1000)+(numSeconds*1000)).toLong()
+            setDuration(beginVal)
             timer(beginVal, 1000).start()
 
         }
@@ -49,20 +57,28 @@ class Home : Fragment() {
         return view
     }
 
+    var beforeTime = System.currentTimeMillis()
+    var afterTime = System.currentTimeMillis()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
 
+    override fun onPause() {
+        super.onPause()
+    }
     override fun onDestroy() {
         super.onDestroy()
     }
 
     override fun onStop() {
         super.onStop()
+        beforeTime = System.currentTimeMillis()
     }
 
     override fun onStart() {
         super.onStart()
+        afterTime = System.currentTimeMillis() - beforeTime
     }
 
     // Might need onActivityResult() here to catch the result from startActivityForResult() method
@@ -110,6 +126,7 @@ class Home : Fragment() {
             override fun onFinish(){
                 makeUiVisible()
                 errMess.text = ""
+                pointsEarned()
             }
         }
     }
@@ -170,6 +187,13 @@ class Home : Fragment() {
             seconds.joinToString(separator="").toInt()
         }
         return trueS
+    }
+
+    private fun pointsEarned(){
+        var timeEarned = (durationInMillis - afterTime)/1000
+        var minutesEarned = timeEarned/60
+        //var totalPoints = (minutesEarned *5) - (14 * numUnlocks)
+        points.text = "You earned " + timeEarned + " Points!"
     }
 
 }
