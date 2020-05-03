@@ -38,4 +38,5 @@
     <string name="stop_alarm">Stop alarm</string>
     <string name="did_you_set_the_alarm">did you set the alarm?</string>
     <string name="stop_time">Stop</string>
+    <string name="bt_already_enabled">Your bluetooth adapter is already enabled</string>
 </resources>
