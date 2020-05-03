@@ -6,13 +6,24 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupNavigation()
+
+
+        // Write a message to the database
+
+        // Write a message to the database
+        val database = FirebaseDatabase.getInstance()
+        val myRef = database.getReference("message")
+
+        myRef.setValue("Hello, World!")
     }
 
     private fun setupNavigation(){
@@ -23,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun SetNavigationVisibilty(b: Boolean){
+    fun setNavigationVisibility(b: Boolean){
         if(b){
             bottom_nav.visibility = View.VISIBLE
         }
