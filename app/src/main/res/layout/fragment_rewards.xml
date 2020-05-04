@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rewards_constraint"
@@ -8,15 +7,294 @@
     android:layout_height="match_parent"
     tools:context=".Rewards">
 
+
         <TextView
-            android:layout_width="344dp"
-            android:layout_height="111dp"
-            android:text="@string/rewards"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/rewards_text"
+            android:layout_width="156dp"
+            android:layout_height="66dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:text="Rewards"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/six_flags_img"
+            app:layout_constraintEnd_toStartOf="@+id/your_points_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/your_points_text"
+            android:layout_width="106dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="32dp"
+            android:gravity="center"
+            android:text="Your Points:"
+            app:layout_constraintBottom_toTopOf="@+id/lyft_image"
+            app:layout_constraintEnd_toStartOf="@+id/user_points"
+            app:layout_constraintStart_toEndOf="@+id/rewards_text"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/user_points"
+            android:layout_width="106dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="32dp"
+            android:text="@string/start_points"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/lyft_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/your_points_text"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <ImageView
+            android:id="@+id/six_flags_img"
+            android:layout_width="131dp"
+            android:layout_height="115dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="156dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="96dp"
+            android:src="@drawable/six_flags"
+            app:layout_constraintBottom_toTopOf="@id/six_flags_button"
+            app:layout_constraintEnd_toStartOf="@+id/lyft_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/six_flags_deal"
+            android:layout_width="134dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="Six Flags Day Pass"
+            app:layout_constraintBottom_toTopOf="@+id/six_flags_price"
+            app:layout_constraintEnd_toStartOf="@+id/lyft_deal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/six_flags_img" />
+
+        <TextView
+            android:id="@+id/six_flags_price"
+            android:layout_width="134dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="Price: 2000 points"
+            app:layout_constraintBottom_toTopOf="@+id/six_flags_button"
+            app:layout_constraintEnd_toStartOf="@+id/lyft_price"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/six_flags_deal" />
+
+        <Button
+            android:id="@+id/six_flags_button"
+            android:layout_width="88dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:text="redeem"
+            app:layout_constraintBottom_toTopOf="@+id/big_mac_image"
+            app:layout_constraintEnd_toStartOf="@+id/lyft_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/six_flags_price" />
+
+        <ImageView
+            android:id="@+id/big_mac_image"
+            android:layout_width="131dp"
+            android:layout_height="115dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="96dp"
+            android:src="@drawable/mc_d"
+            app:layout_constraintBottom_toTopOf="@+id/big_mac_button"
+            app:layout_constraintEnd_toStartOf="@+id/frosty_image"
+            app:layout_constraintHorizontal_bias="0.455"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/six_flags_button" />
+
+        <TextView
+            android:id="@+id/big_mac_deal"
+            android:layout_width="134dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="McDonald's Big Mac"
+            app:layout_constraintBottom_toTopOf="@+id/big_mac_price"
+            app:layout_constraintEnd_toStartOf="@+id/frosty_deal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/big_mac_image" />
+
+        <TextView
+            android:id="@+id/big_mac_price"
+            android:layout_width="134dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="Price: 500"
+            app:layout_constraintBottom_toTopOf="@+id/big_mac_button"
+            app:layout_constraintEnd_toStartOf="@+id/frosty_price"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/big_mac_deal" />
+
+        <Button
+            android:id="@+id/big_mac_button"
+            android:layout_width="88dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="84dp"
+            android:text="redeem"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/frosty_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/big_mac_price"
+            app:layout_constraintVertical_bias="1.0" />
+
+
+        <ImageView
+            android:id="@+id/lyft_image"
+            android:layout_width="131dp"
+            android:layout_height="115dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="156dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="96dp"
+            android:src="@drawable/lyft"
+            app:layout_constraintBottom_toTopOf="@+id/lyft_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/six_flags_img"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <TextView
+            android:id="@+id/lyft_deal"
+            android:layout_width="134dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="$10 Lyft Coupon"
+            app:layout_constraintBottom_toTopOf="@+id/lyft_price"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/six_flags_deal"
+            app:layout_constraintTop_toBottomOf="@+id/lyft_image" />
+
+        <TextView
+            android:id="@+id/lyft_price"
+            android:layout_width="134dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="Price: 750 points"
+            app:layout_constraintBottom_toTopOf="@+id/lyft_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/six_flags_price"
+            app:layout_constraintTop_toBottomOf="@+id/lyft_deal" />
+
+        <Button
+            android:id="@+id/lyft_button"
+            android:layout_width="88dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="16dp"
+            android:text="redeem"
+            app:layout_constraintBottom_toTopOf="@+id/frosty_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/six_flags_button"
+            app:layout_constraintTop_toBottomOf="@+id/lyft_price" />
+
+        <ImageView
+            android:id="@+id/frosty_image"
+            android:layout_width="131dp"
+            android:layout_height="115dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="96dp"
+            android:src="@drawable/frosty"
+            app:layout_constraintBottom_toTopOf="@+id/frosty_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/big_mac_image"
+            app:layout_constraintTop_toBottomOf="@+id/lyft_button" />
+
+        <TextView
+            android:id="@+id/frosty_deal"
+            android:layout_width="134dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="Wendy's Frosty"
+            app:layout_constraintBottom_toTopOf="@+id/frosty_price"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/big_mac_deal"
+            app:layout_constraintTop_toBottomOf="@+id/frosty_image" />
+
+        <TextView
+            android:id="@+id/frosty_price"
+            android:layout_width="134dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="Price 200"
+            app:layout_constraintBottom_toTopOf="@+id/frosty_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/big_mac_price"
+            app:layout_constraintTop_toBottomOf="@+id/frosty_deal" />
+
+        <Button
+            android:id="@+id/frosty_button"
+            android:layout_width="88dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="84dp"
+            android:text="redeem"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/big_mac_button"
+            app:layout_constraintTop_toBottomOf="@+id/frosty_price" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
