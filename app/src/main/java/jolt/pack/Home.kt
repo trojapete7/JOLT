@@ -5,9 +5,7 @@ import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothSocket
 import android.content.Intent
-import android.os.Bundle
-import android.os.CountDownTimer
-import android.os.Handler
+import android.os.*
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,24 +14,27 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import kotlinx.android.synthetic.main.fragment_home.*
+import java.io.IOException
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 
 const val REQUEST_ENABLE_BT = 1
 const val MODULE_MAC = "98:D3:B1:FD:71:35"
+val UUID: UUID = java.util.UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
 private const val SCAN_PERIOD: Long = 10000
-/*val bta: BluetoothAdapter
-val mmSocket: BluetoothSocket
-val mmDevice: BluetoothDevice
-val mHandler: Handler
-val btt: ConnectedThread = null*/
+val bluetoothAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
+var isTimerRunning: Boolean = false
+var btt: ConnectedThread? = null
+
+const val vibrate: String = "1"
 
 class Home : Fragment() {
 
     var durationInMillis  = 0L
-    private fun setDuration (Long: Long):Long {
+    private fun getDuration (Long: Long):Long {
         durationInMillis = Long
         return Long
     }
@@ -41,11 +42,13 @@ class Home : Fragment() {
     override fun onCreateView (inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_home, container, false)
 
+        //Connect to Device button actions
         view.findViewById<Button>(R.id.bt_connection_butt).setOnClickListener {
             Log.i("[BLUETOOTH]", "Attempting to send data")
             onConnectClick()
         }
 
+        //Start Monitoring button actions
         view.findViewById<Button>(R.id.start_monitor_butt).setOnClickListener {
             val minutes = view.findViewById<EditText>(R.id.editMinutes).text.toString()
             val seconds = view.findViewById<EditText>(R.id.editSeconds).text.toString()
@@ -55,13 +58,16 @@ class Home : Fragment() {
 
             hideUi()
             errMess.visibility = View.VISIBLE
+            errMess.textSize = 30F
             val beginVal: Long = ((numMinutes*60*1000)+(numSeconds*1000)).toLong()
-            setDuration(beginVal)
-            timer(beginVal, 1000).start()
+            getDuration(beginVal)
 
+            isTimerRunning = true
+            timer(beginVal, 1000).start()
 
         }
 
+        //Cancel Monitoring button actions
         view.findViewById<Button>(R.id.cancel_monitor_butt).setOnClickListener {
             errMess.visibility = View.INVISIBLE
             makeUiVisible()
@@ -70,8 +76,9 @@ class Home : Fragment() {
         return view
     }
 
-    var beforeTime = System.currentTimeMillis()
-    var afterTime = System.currentTimeMillis()
+    //var beforeTime = System.currentTimeMillis()
+    //var afterTime = System.currentTimeMillis()
+    var userUnlock: Int = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -79,6 +86,7 @@ class Home : Fragment() {
 
     override fun onPause() {
         super.onPause()
+        //beforeTime = System.currentTimeMillis()
     }
 
     override fun onDestroy() {
@@ -87,17 +95,23 @@ class Home : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        beforeTime = System.currentTimeMillis()
     }
 
     override fun onStart() {
         super.onStart()
-        afterTime = System.currentTimeMillis() - beforeTime
     }
 
-    // Might need onActivityResult() here to catch the result from startActivityForResult() method
+    override fun onResume() {
+        super.onResume()
+        //afterTime = System.currentTimeMillis() - beforeTime
+
+        if (isTimerRunning){
+            userUnlock++
+            btt!!.write(vibrate.toByteArray())
+        }
+    }
+
     private fun onConnectClick (){
-        val bluetoothAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
 
         if (bluetoothAdapter == null){
             errMess.text = getString(R.string.err_message_no_bt)
@@ -108,20 +122,54 @@ class Home : Fragment() {
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT)
 
         } else {
+            errMess.textSize = 14F
             errMess.text = getString(R.string.bt_already_enabled)
+            initiateBluetoothProcess()
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK && requestCode == REQUEST_ENABLE_BT){
-            //initiateBluetoothProcess()
+            initiateBluetoothProcess()
         }
     }
 
-    /*fun initiateBluetoothProcess() {
-        if(bluetoothAdapter.is)
-    }*/
+     private fun initiateBluetoothProcess() {
+        if (bluetoothAdapter != null) {
+            if(bluetoothAdapter.isEnabled) {
+                var tmp: BluetoothSocket?
+                val mmDevice: BluetoothDevice? = bluetoothAdapter.getRemoteDevice(MODULE_MAC)
+                var mmSocket: BluetoothSocket? = null
+
+                try {
+                    tmp = mmDevice?.createRfcommSocketToServiceRecord(UUID)
+                    mmSocket = tmp
+                    mmSocket?.connect()
+                    Log.i("[BLUETOOTH]", "Connected to " + mmDevice?.name)
+                }
+
+                catch(e:IOException) {
+                    mmSocket?.close()
+                }
+
+                Log.i("[BLUETOOTH]", "Creating handler")
+                val handlerThread = HandlerThread("HC-05_HandlerThread")
+                val mHandler = Handler(Looper.getMainLooper())
+
+                fun handleMessage(msg: Message){
+                    if(msg.what == ConnectedThread.RESPONSE_MESSAGE){
+                        val txt: String = msg.obj.toString()
+                    }
+                }
+
+                Log.i("[BLUETOOTH]", "Creating and running thread")
+                btt = ConnectedThread(mmSocket, mHandler)
+                btt!!.start()
+
+            }
+        }
+    }
 
     private fun timer(millisUntilFinished: Long, countDownInterval: Long):CountDownTimer {
         return object:CountDownTimer(millisUntilFinished, countDownInterval){
@@ -145,12 +193,19 @@ class Home : Fragment() {
                 val displayMinutes = ((elapsedMinutes).toInt().toString())
                 val displaySeconds = ((elapsedSeconds).toInt().toString())
 
-                errMess.text = ("$displayMinutes : $displaySeconds")
+                if (displaySeconds.toInt() < 10) {
+                    errMess.text = ("$displayMinutes : 0$displaySeconds")
+                }
+
+                else {
+                    errMess.text = ("$displayMinutes : $displaySeconds")
+                }
+
             }
 
             override fun onFinish(){
                 makeUiVisible()
-                errMess.text = ""
+                isTimerRunning = false
                 pointsEarned()
             }
         }
@@ -215,11 +270,19 @@ class Home : Fragment() {
     }
 
     private fun pointsEarned(){
-        val timeEarned = (durationInMillis - afterTime)/1000
-        var minutesEarned = timeEarned/60
-        //var totalPoints = (minutesEarned *5) - (14 * numUnlocks)
-        points.text = "You earned " + timeEarned + " Points!"
+        //val timeEarned = (durationInMillis - afterTime)/1000
+        val secondsEarned = (durationInMillis)/1000
+        val minutesEarned = secondsEarned/60
+        var totalPoints = (minutesEarned * 5) - (15 * userUnlock)
+
+        if (totalPoints < 10){
+            totalPoints = 10
+        }
+
+        points.text = "You earned $totalPoints points and unlocked: $userUnlock time(s)"
     }
+
+
 }
 
 
