@@ -5,13 +5,13 @@ import android.content.Context
 import android.content.Intent
 
 class AlarmReceiver : BroadcastReceiver() {
-    override fun onReceive(context: Context?, intent: Intent?) {
+    override fun onReceive(context: Context, intent: Intent) {
 
-        val getResult : String? = intent!!.getStringExtra("extra")
+        val service = Intent(context, RingtoneService::class.java)
+        service.putExtra("reason", intent.getStringExtra("reason"))
+        service.putExtra("timestamp", intent.getLongExtra("timestamp", 0))
 
-        val serviceIntent: Intent = Intent(context,RingtoneService::class.java)
-        serviceIntent.putExtra("extra",getResult)
-        context!!.startService(serviceIntent)
+        context.startService(service)
 
     }
 }

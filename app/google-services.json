@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1043322706706",
+    "firebase_url": "https://jolt-76038.firebaseio.com",
+    "project_id": "jolt-76038",
+    "storage_bucket": "jolt-76038.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1043322706706:android:862900d539b193ec01f1cb",
+        "android_client_info": {
+          "package_name": "jolt.pack"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1043322706706-tve0ocavatunjtesolu99odg9bgqeimt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzLy1x3VKt0A6Mj1FDt0krM0TiD9tAIs8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1043322706706-tve0ocavatunjtesolu99odg9bgqeimt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

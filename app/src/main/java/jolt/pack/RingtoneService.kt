@@ -1,88 +1,98 @@
 package jolt.pack
 
-import android.app.Notification
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.app.Service
+import android.app.*
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.media.Ringtone
 import android.media.RingtoneManager
 import android.net.Uri
+import android.os.Build
 import android.os.IBinder
+import android.widget.RemoteViews
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 
-class RingtoneService : Service() {
+class RingtoneService : IntentService("AlarmReceiver") {
+    private lateinit var mNotification : Notification
+    private val mNotificationId : Int = 1000
+
+    private fun createChannel(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val context = this.applicationContext
+            val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val importance = NotificationManager.IMPORTANCE_HIGH
+            val notificationChannel = NotificationChannel(CHANNEL_ID, CHANNEL_NAME, importance)
+            notificationChannel.enableVibration(true)
+            notificationChannel.setShowBadge(true)
+            notificationChannel.lightColor = Color.parseColor("#e8443a")
+            notificationChannel.description = "Hello"
+            notificationChannel.lockscreenVisibility = Notification.VISIBILITY_PUBLIC
+            notificationManager.createNotificationChannel(notificationChannel)
+        }
+    }
+
     companion object{
+        const val CHANNEL_ID = "jolt.pack"
+        const val CHANNEL_NAME = "Sample Notification"
         lateinit var r: Ringtone
     }
     var id : Int = 0
     var isRunning : Boolean = false
-    override fun onBind(intent: Intent?): IBinder? {
-        return null
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun onHandleIntent(intent: Intent?) {
+        createChannel()
+
+        var timestamp : Long = 0
+        if(intent != null && intent.extras != null){
+            timestamp = intent.extras!!.getLong("timestamp")
+        }
+
+        if (timestamp > 0){
+            val context = this.applicationContext
+            var notificationManager : NotificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val notifyIntent = Intent(this, ResultActivity::class.java)
+            val title = "Monitoring Mode"
+            val message = "Monitoring Mode is now on"
+
+            notifyIntent.putExtra("title", title)
+            notifyIntent.putExtra("message", message)
+            notifyIntent.putExtra("notification", true)
+
+            notifyIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+
+            val calendar = android.icu.util.Calendar.getInstance()
+            calendar.timeInMillis = timestamp
+
+            val pendingIntent = PendingIntent.getActivity(context, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+            val res = this.resources
+            val uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                mNotification = Notification.Builder(this, CHANNEL_ID)
+                    .setContentIntent(pendingIntent)
+                    .setSmallIcon(R.drawable.ic_launcher_round)
+                    .setAutoCancel(true)
+                    .setContentTitle(title)
+                    .setStyle(Notification.BigTextStyle().bigText(message))
+                    .setContentText(message).build()
+            }
+            else {
+                mNotification = Notification.Builder(this)
+                    .setContentIntent(pendingIntent)
+                    .setSmallIcon(R.drawable.ic_launcher_round)
+                    .setAutoCancel(true)
+                    .setPriority(Notification.PRIORITY_MAX)
+                    .setContentTitle(title)
+                    .setStyle(Notification.BigTextStyle().bigText(message))
+                    .setSound(uri)
+                    .setContentText(message).build()
+            }
+
+            notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.notify(mNotificationId, mNotification)
+        }
     }
 
-    override fun onStartCommand(intent: Intent?, flags: Int, startId : Int) :Int {
-        val state : String? = intent!!.getStringExtra("extra")
-        assert(state!=null)
-        when(state){
-            "on" -> id = 1
-            "off" -> id = 0
-        }
-        if (!this.isRunning && id == 1){
-            playAlarm()
-            this.isRunning = true
-            this.id = 0
-            fireNotification()
-        }
-        else if (this.isRunning && id == 0){
-            r.stop()
-            this.isRunning = false
-            this.id = 0
-        }
-        else if (!this.isRunning && id == 0){
-            this.isRunning = false
-            this.id = 0
-        }
-        else if (this.isRunning && id == 1){
-            this.isRunning = true
-            this.id = 1
-        }
-        else {
-
-        }
-        return START_NOT_STICKY
-    }
-
-    private fun fireNotification(){
-        val main_activity_intent : Intent = Intent(this,Schedule::class.java)
-        val pi : PendingIntent = PendingIntent.getActivity(this,0,main_activity_intent,0)
-        val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-
-        val notify_manager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val notification: Notification = NotificationCompat.Builder(this)
-            .setContentTitle("Alarm is going off")
-            .setSmallIcon(R.mipmap.ic_launcher)
-            .setSound(defaultSoundUri)
-            .setContentText("Click Me")
-            .setContentIntent(pi)
-            .setAutoCancel(true)
-            .build()
-
-        notify_manager.notify(0, notification)
-    }
-
-    private fun playAlarm(){
-        var alarmUri : Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
-        if (alarmUri == null){
-            alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-        }
-        r = RingtoneManager.getRingtone(baseContext,alarmUri)
-        r.play()
-    }
-
-    override fun onDestroy(){
-        super.onDestroy()
-        this.isRunning = false
-    }
 }

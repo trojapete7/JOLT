@@ -32,6 +32,13 @@
             android:name="RingtoneService"
             android:enabled="true"/>
 
+        <activity
+            android:name=".ResultActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/notification"
+            android:launchMode="singleTask"
+            android:taskAffinity=""/>
+
     </application>
 
 </manifest>

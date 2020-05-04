@@ -15,8 +15,9 @@ import android.widget.Button
 import android.widget.EditText
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.io.IOException
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
-import jolt.*
 
 //Request code for intent to start BT service
 const val REQUEST_ENABLE_BT = 1
@@ -46,7 +47,13 @@ var userUnlock: Int = 0
 //String to be sent to Arduino board to control LED "vibrations"
 const val vibrate: String = "1"
 
+//Variable to keep track of user's point total
 var currentPoints: Int = 500
+
+var totalPoints: Int = 0
+
+var sessionDate: LocalDateTime? = null
+val dt: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd'-'HH:mm")
 
 /**CLASS FOR THE HOME/MONITORING FRAGMENT. THE MAIN SCREEN OF THE JOLT APPLICATION.**/
 class Home : Fragment() {
@@ -76,6 +83,8 @@ class Home : Fragment() {
         view.findViewById<Button>(R.id.start_monitor_butt).setOnClickListener {
             val minutes = view.findViewById<EditText>(R.id.editMinutes).text.toString()
             val seconds = view.findViewById<EditText>(R.id.editSeconds).text.toString()
+
+            sessionDate = LocalDateTime.now()
 
             val numMinutes = cleanMinutes(minutes)
             val numSeconds = cleanSeconds(seconds)
@@ -218,8 +227,11 @@ class Home : Fragment() {
 
             override fun onFinish(){
                 makeUiVisible()
+                errMess.visibility = View.INVISIBLE
+
                 isTimerRunning = false
                 pointsEarned()
+
             }
         }
     }
@@ -230,6 +242,7 @@ class Home : Fragment() {
         separatorMinutesToSeconds.visibility = View.VISIBLE
         bt_connection_butt.visibility = View.VISIBLE
         start_monitor_butt.visibility = View.VISIBLE
+        alertMess.visibility = View.INVISIBLE
         (activity as MainActivity).setNavigationVisibility(true)
     }
 
@@ -239,6 +252,7 @@ class Home : Fragment() {
         separatorMinutesToSeconds.visibility = View.INVISIBLE
         bt_connection_butt.visibility = View.INVISIBLE
         start_monitor_butt.visibility = View.INVISIBLE
+        alertMess.visibility = View.VISIBLE
         (activity as MainActivity).setNavigationVisibility(false)
     }
 
@@ -291,15 +305,16 @@ class Home : Fragment() {
      **/
     private fun pointsEarned(){
         //val timeEarned = (durationInMillis - afterTime)/1000
-        val secondsEarned = (durationInMillis)/1000
+        val secondsEarned = ((durationInMillis)/1000).toInt()
         val minutesEarned = secondsEarned/60
-        var totalPoints = (minutesEarned * 5) - (15 * userUnlock)
+        totalPoints = (minutesEarned * 10) - (15 * userUnlock)
 
         if (totalPoints < 10){
             totalPoints = 10
         }
+
         points.text = "You earned $totalPoints points and unlocked: $userUnlock time(s)"
-        currentPoints += totalPoints.toInt()
+        currentPoints += totalPoints
     }
 
 }

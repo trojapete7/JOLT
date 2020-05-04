@@ -17,8 +17,4 @@
         android:id="@+id/rewards"
         android:icon="@android:drawable/btn_star"
         android:title="@string/rewards" />
-    <item
-        android:id="@+id/settings"
-        android:icon="@android:drawable/ic_menu_manage"
-        android:title="@string/action_settings" />
 </menu>
