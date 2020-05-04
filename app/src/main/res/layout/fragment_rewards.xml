@@ -18,31 +18,41 @@
         android:text="Rewards"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/user_points"
+        app:layout_constraintEnd_toStartOf="@+id/your_points_text"
         app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.086" />
+        app:layout_constraintVertical_bias="0.085" />
 
     <TextView
-        android:id="@+id/user_points"
-        android:layout_width="156dp"
-        android:layout_height="66dp"
+        android:id="@+id/your_points_text"
+        android:layout_width="55dp"
+        android:layout_height="57dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="Your Points: 5000"
+        android:text="Your Points:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/rewards_text"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.085" />
+        app:layout_constraintVertical_bias="0.096" />
+
+    <TextView
+        android:id="@+id/user_points"
+        android:layout_width="43dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:text="5000"
+        app:layout_constraintStart_toEndOf="@+id/your_points_text"
+        app:layout_constraintTop_toTopOf="@id/your_points_text" />
 
     <ImageView
         android:id="@+id/six_flags_img"
         android:layout_width="131dp"
         android:layout_height="115dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="68dp"
         android:src="@drawable/six_flags"
         app:layout_constraintEnd_toStartOf="@+id/lyft_image"
         app:layout_constraintStart_toStartOf="@+id/rewards_text"
@@ -130,10 +140,10 @@
         android:id="@+id/lyft_image"
         android:layout_width="131dp"
         android:layout_height="115dp"
-        android:layout_marginStart="76dp"
+        android:layout_marginStart="50dp"
         android:src="@drawable/lyft"
         app:layout_constraintStart_toEndOf="@id/six_flags_img"
-        app:layout_constraintTop_toBottomOf="@+id/user_points"
+        app:layout_constraintTop_toBottomOf="@+id/your_points_text"
         app:layout_constraintTop_toTopOf="@+id/six_flags_img" />
 
     <TextView

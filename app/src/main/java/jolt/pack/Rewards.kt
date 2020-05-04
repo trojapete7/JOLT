@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import kotlinx.android.synthetic.main.fragment_rewards.*
 import java.nio.file.attribute.UserPrincipal
 
 class Rewards : Fragment() {
@@ -17,43 +18,22 @@ class Rewards : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_rewards, container, false)
-        /*
-        val userPoints = view.findViewById<TextView>(R.id.user_points) as TextView
-
-        view.findViewById<Button>(R.id.six_flags_button).setOnClickListener {
-            redeemDayPass(userPoints)
+        six_flags_button.setOnClickListener {
+            user_points.text = "0"
         }
 
-        view.findViewById<Button>(R.id.lyft_button).setOnClickListener {
-            redeemLyft(userPoints)
+        lyft_button.setOnClickListener {
+            user_points.text = "4000"
         }
 
-        view.findViewById<Button>(R.id.big_mac_button).setOnClickListener {
-            redeemBigMac(userPoints)
+        big_mac_button.setOnClickListener {
+            user_points.text = "4500"
         }
 
-        view.findViewById<Button>(R.id.frosty_button).setOnClickListener {
-            redeemFrosty(userPoints)
-        }
-        fun redeemDayPass(userPoints: Int) {
-            if (userPoints >= 5000) {
-                val newPoints = userPoints - 5000
-                userPoints
-            }
+        frosty_button.setOnClickListener {
+            user_points.text = "4800"
         }
 
-        fun redeemLyft(userPoints: Int) {
-
-        }
-
-        fun redeemBigMac(userPoints: Int) {
-
-        }
-
-        fun redeemFrosty(userPoints: Int) {
-
-        }*/
         return view
     }
 }
