@@ -59,9 +59,9 @@ class Calendar : Fragment() {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val sessionTime = dataSnapshot.getValue(String::class.java)
                     textView2.text = sessionTime
-                    textView5.text = sessionTime
+ /*                   textView5.text = sessionTime
                     textView8.text = sessionTime
-                    textView12.text = sessionTime
+                    textView12.text = sessionTime*/
                 }
 
 
