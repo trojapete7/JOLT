@@ -27,4 +27,26 @@
     <string name="hoursEdit_hint">HH</string>
     <string name="timer_done">Timer is done!</string>
     <string name="cancel_monitor">Cancel Monitoring</string>
+    <string name="TODO">todo</string>
+    <string name="description">Description</string>
+    <string name="example_application">Example application</string>
+    <string name="monitor_history">Monitor History</string>
+    <string name="session_1">Session 1</string>
+    <string name="_04_28_20_t_08_45_00">04-28-20/08:45:00</string>
+    <string name="points_200">Points: 200</string>
+    <string name="_04_28_20_t_11_45_00">time</string>
+    <string name="session_2">Session 2</string>
+    <string name="time1">05/01/2020-11:45:00</string>
+    <string name="time2">05/02/2020-09:20:00</string>
+    <string name="points_350">Points: 350</string>
+    <string name="session">Session 3</string>
+    <string name="session3">Session 3</string>
+    <string name="time3">Date:</string>
+    <string name="points3">Points: 320</string>
+    <string name="session4">Session 4</string>
+    <string name="time4">Date: 05/03/2020-12:30:00</string>
+    <string name="points4">Points: 420</string>
+    <string name="session5">Session 5</string>
+    <string name="time5">05/03/2020-12:00</string>
+    <string name="points5">Points: 250</string>
 </resources>

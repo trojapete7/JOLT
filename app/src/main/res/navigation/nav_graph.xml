@@ -27,6 +27,15 @@
         android:id="@+id/calendar"
         android:name="jolt.pack.Calendar"
         android:label="fragment_calendar"
+        tools:layout="@layout/fragment_calendar" >
+        <action
+            android:id="@+id/action_calendar_to_calendar3"
+            app:destination="@id/calendar3" />
+    </fragment>
+    <fragment
+        android:id="@+id/calendar3"
+        android:name="jolt.pack.Calendar"
+        android:label="fragment_calendar"
         tools:layout="@layout/fragment_calendar" />
     <fragment
         android:id="@+id/rewards"

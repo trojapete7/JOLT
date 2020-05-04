@@ -10,6 +10,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.navigation.Navigation
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_home.*
 
 
@@ -18,6 +23,8 @@ const val MODULE_MAC = "98:D3:B1:FD:71:35"
 private const val SCAN_PERIOD: Long = 10000
 
 class Home : Fragment() {
+
+
 
     override fun onCreateView (inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_home, container, false)
@@ -120,7 +127,7 @@ class Home : Fragment() {
         separatorMinutesToSeconds.visibility = View.VISIBLE
         bt_connection_butt.visibility = View.VISIBLE
         start_monitor_butt.visibility = View.VISIBLE
-        (activity as MainActivity).SetNavigationVisibilty(true)
+        (activity as MainActivity).setNavigationVisibility(true)
 
         cancel_monitor_butt.visibility = View.INVISIBLE
     }
@@ -131,7 +138,7 @@ class Home : Fragment() {
         separatorMinutesToSeconds.visibility = View.INVISIBLE
         bt_connection_butt.visibility = View.INVISIBLE
         start_monitor_butt.visibility = View.INVISIBLE
-        (activity as MainActivity).SetNavigationVisibilty(false)
+        (activity as MainActivity).setNavigationVisibility(false)
         cancel_monitor_butt.visibility = View.VISIBLE
     }
 
@@ -173,6 +180,3 @@ class Home : Fragment() {
     }
 
 }
-
-
-

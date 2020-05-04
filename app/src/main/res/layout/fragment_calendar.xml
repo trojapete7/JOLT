@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout2"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="6dip">
+
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/monitor_history"
+            android:textColor="#FFC107"
+            android:textSize="30sp" />
+
+        <include
+            layout="@layout/recycler_view_item"
+            android:layout_width="386dp"
+            android:layout_height="wrap_content" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/calendar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#FFFFFF"
-            android:backgroundTint="#FFFFFF"
-            android:keepScreenOn="true"
-            android:visibility="visible"
-            tools:itemCount="6"
-            tools:listitem="@layout/recycler_view_item"
-            tools:visibility="visible" />
-</RelativeLayout>
+            android:id="@+id/leaderboard_list"
+            android:layout_width="367dp"
+            android:layout_height="712dp"
+            tools:itemCount="2"
+            tools:listitem="@layout/recycler_view_item" />
+</LinearLayout>
