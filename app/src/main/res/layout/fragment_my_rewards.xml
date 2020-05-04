@@ -8,4 +8,123 @@
     android:layout_height="match_parent"
     tools:context=".MyRewards">
 
+    <TextView
+        android:id="@+id/rewards_button"
+        android:layout_width="150dp"
+        android:layout_height="83dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="Earned Rewards"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.02" />
+
+    <ImageView
+        android:id="@+id/six_flags_img_myrewards"
+        android:layout_width="134dp"
+        android:layout_height="121dp"
+        android:src="@drawable/six_flags"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.146" />
+
+    <ImageView
+        android:id="@+id/lyft_img_myrewards"
+        android:layout_width="141dp"
+        android:layout_height="143dp"
+        android:layout_marginBottom="316dp"
+        android:src="@drawable/lyft"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.061"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/six_flags_img_myrewards"
+        app:layout_constraintVertical_bias="0.244" />
+
+    <ImageView
+        android:id="@+id/big_mac_image_myrewards"
+        android:layout_width="141dp"
+        android:layout_height="161dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/mc_d"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.061"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lyft_img_myrewards" />
+
+    <ImageView
+        android:id="@+id/frosty_image_myrewards"
+        android:layout_width="157dp"
+        android:layout_height="110dp"
+        android:src="@drawable/frosty"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/big_mac_image_myrewards"
+        app:layout_constraintVertical_bias="0.213" />
+
+    <TextView
+        android:id="@+id/six_flags_num"
+        android:layout_width="140dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="140dp"
+        android:text="TextView"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="24sp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.031"
+        app:layout_constraintStart_toEndOf="@+id/six_flags_img_myrewards"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lyft_num"
+        android:layout_width="140dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="108dp"
+        android:text="TextView"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="24sp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lyft_img_myrewards"
+        app:layout_constraintTop_toBottomOf="@+id/six_flags_num" />
+
+    <TextView
+        android:id="@+id/big_mac_num"
+        android:layout_width="140dp"
+        android:layout_height="63dp"
+        android:text="TextView"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="24sp"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/frosty_num"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintStart_toEndOf="@+id/big_mac_image_myrewards"
+        app:layout_constraintTop_toBottomOf="@+id/lyft_num"
+        app:layout_constraintVertical_bias="0.572" />
+
+    <TextView
+        android:id="@+id/frosty_num"
+        android:layout_width="140dp"
+        android:layout_height="63dp"
+        android:layout_marginBottom="144dp"
+        android:text="TextView"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="24sp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toEndOf="@+id/frosty_image_myrewards" />
 </androidx.constraintlayout.widget.ConstraintLayout>

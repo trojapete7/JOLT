@@ -35,7 +35,8 @@
         tools:layout="@layout/fragment_rewards" >
         <action
             android:id="@+id/action_rewards_to_myRewards"
-            app:destination="@id/myRewards" />
+            app:destination="@id/myRewards"
+            app:popUpTo="@id/rewards" />
     </fragment>
     <fragment
         android:id="@+id/settings"

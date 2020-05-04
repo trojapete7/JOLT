@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_rewards.*
 
 const val six_flags: Int = 2000
@@ -49,9 +50,7 @@ class Rewards : Fragment() {
         }
 
         view.findViewById<Button>(R.id.rewards_button).setOnClickListener {
-            currentPoints -= wendys_frosty
-            num_frosty++
-            user_points.text = currentPoints.toString()
+            findNavController().navigate(R.id.myRewards)
         }
 
         return view
