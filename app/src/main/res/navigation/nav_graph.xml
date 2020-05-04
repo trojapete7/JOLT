@@ -32,7 +32,11 @@
         android:id="@+id/rewards"
         android:name="jolt.pack.Rewards"
         android:label="fragment_rewards"
-        tools:layout="@layout/fragment_rewards" />
+        tools:layout="@layout/fragment_rewards" >
+        <action
+            android:id="@+id/action_rewards_to_myRewards"
+            app:destination="@id/myRewards" />
+    </fragment>
     <fragment
         android:id="@+id/settings"
         android:name="jolt.pack.Settings"
@@ -52,5 +56,10 @@
         android:id="@+id/addSchedule"
         android:name="jolt.pack.AddSchedule"
         android:label="add_schedule" />
+    <fragment
+        android:id="@+id/myRewards"
+        android:name="jolt.pack.MyRewards"
+        android:label="fragment_my_rewards"
+        tools:layout="@layout/fragment_my_rewards" />
 
 </navigation>
